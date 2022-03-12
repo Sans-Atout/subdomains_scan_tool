@@ -31,9 +31,9 @@ def testSubdomains(domain):
     hasrecord,ips = testGoogleDNS(domain)
     if hasrecord:
         try:
-            response = HTTP_REQUESTER.request("GET", "https://"+domain+"/")
+            response = HTTP_REQUESTER.request("GET", "https://"+domain+"/", timeout=5)
             return (True, response.status)
         except:
-            return (False, -2 )
+            return (True, -2)
 
     return (False, -1)
