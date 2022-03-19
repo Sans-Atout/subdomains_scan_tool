@@ -39,12 +39,13 @@ def printBanner():
     print(setColor("YELLOW") + _BANNER+setColor("END"))
 
 
-def printInit(domains, thread,wordlist, recursive):
+def printInit(domains, thread,wordlist, recursive, optimize):
     print()
     printInfo("domains tested\t\t: "  +domains)
     printInfo("wordlist path\t\t: "  +wordlist)
     printInfo("number of treath(s)\t: "  +str(thread))
     printInfo("recursivity level\t: "  +str(recursive))
+    printInfo("optimize\t\t: %s" % str(optimize))
     print()
 
 
@@ -66,10 +67,18 @@ def printResult(status,url):
         log = log +setColor("ERROR")+str(status)
     log = log+setColor("END")+']\t'+str(url)
     print("\r"+log)
-    
+
 def printError(log):
     print(getBaseLog()+setColor("ERROR")+"[ERROR\t]\t"+setColor("END")+str(log))
-def avancement(prcent,after="*"):
+
+def avancement(done, max, t_len):
+
+    t_nb = done // t_len
+    p_nb = done % t_len
+    prcent = 100 * (p_nb + 1) / t_len
+    max_t = int(max/t_len)
+    f = ">"+str(len(str(max_t)))
+    f_t = ">"+str(len(str(t_len)))
     length = 33
     before="*"
     empty = "-"
@@ -81,7 +90,11 @@ def avancement(prcent,after="*"):
         else:
             bar = bar + empty
     bar = bar + "]"
-    print("\r"+getBaseLog()+setColor("YELLOW")+bar+" "+"{:.2%}".format(prcent/100) +"\t["+after+"]"+setColor("END"), end ="")
+    pourcentage = format("{:.2%}".format(prcent/100), ">7")
+    ligne = "\r"+getBaseLog()+setColor("YELLOW")+bar+" "+pourcentage+ "  "
+    ligne = ligne + "["+format(t_nb,f)+"/"+str(max_t)+"]  ["+format(p_nb,f_t)
+    ligne = ligne + "/"+str(t_len)+"]"+setColor("END")
+    print(ligne, end ="")
 
 def resetLine():
     columns, lines = get_terminal_size()
