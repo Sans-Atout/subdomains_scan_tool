@@ -61,7 +61,7 @@ def isAValidWorlList(wlPath):
     else:
         return (False, "File : " + str(arguments.wordlist)+" does not exists")
 
-def init(infos):
+def scriptInit(infos):
     d = infos["domain"][1]
     w = "subdomains.txt"
     r = 1

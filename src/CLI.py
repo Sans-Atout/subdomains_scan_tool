@@ -46,8 +46,7 @@ def printInit(domains, thread,wordlist, recursive, optimize):
     printInfo("number of treath(s)\t: "  +str(thread))
     printInfo("recursivity level\t: "  +str(recursive))
     printInfo("optimize\t\t: %s" % str(optimize))
-    print()
-
+    return
 
 
 def printFatal(log):
